@@ -1,10 +1,12 @@
 package com.skilleen.secondmicroservice;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.Date;
 
 @Data
+@NoArgsConstructor
 public class ShippingOrder {
 
     private String name;
