@@ -22,7 +22,7 @@ spec:
     spec:
       containers:
         - name: shipping-service
-          image: image-registry.openshift-image-registry.svc:5000/pipeline-test/shipping-service@sha256:bd3e3b701b6fec249cc8292fba8ff8dc7e5f128614b1d750d779fdccc2272df7
+          image: image-registry.openshift-image-registry.svc:5000/pipeline-test/shipping-service:main-4a428f7d02b1036661a958a0da66de099c5feaf4
           ports:
             - name: jolokia
               containerPort: 8778
@@ -34,11 +34,11 @@ spec:
           terminationMessagePolicy: File
           imagePullPolicy: IfNotPresent
       restartPolicy: Always
-      tolerations: 
+      tolerations:
         - key: node.network-zone-type/operations-zone
           operator: Equal
           value: 'true'
-          effect: NoSchedule      
+          effect: NoSchedule
       terminationGracePeriodSeconds: 30
       dnsPolicy: ClusterFirst
       securityContext: {}
