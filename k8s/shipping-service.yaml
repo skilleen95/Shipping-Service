@@ -22,7 +22,7 @@ spec:
     spec:
       containers:
         - name: shipping-service
-          image: fuse7-java-openshift:1.7
+          image: image-registry.openshift-image-registry.svc:5000/pipeline-test/shipping-service:latest
           ports:
             - name: jolokia
               containerPort: 8778
