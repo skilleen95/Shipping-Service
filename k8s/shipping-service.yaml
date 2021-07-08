@@ -12,7 +12,6 @@ spec:
   selector:
     matchLabels:
       app: shipping-service
-      deploymentconfig: shipping-service
   template:
     metadata:
       creationTimestamp: null
