@@ -34,6 +34,11 @@ spec:
           terminationMessagePolicy: File
           imagePullPolicy: IfNotPresent
       restartPolicy: Always
+      tolerations: 
+        - key: node.network-zone-type/operations-zone
+          operator: Equal
+          value: 'true'
+          effect: NoSchedule      
       terminationGracePeriodSeconds: 30
       dnsPolicy: ClusterFirst
       securityContext: {}
