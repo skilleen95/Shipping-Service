@@ -22,7 +22,7 @@ spec:
     spec:
       containers:
         - name: shipping-service
-          image: image-registry.openshift-image-registry.svc:5000/pipeline-test/shipping-service:main-5a05291dad731bc3cb6f3e0616730ff692bb76e2
+          image: image-registry.openshift-image-registry.svc:5000/pipeline-test/shipping-service:main-9c9e58f48fdfb5bd25585c86558809398ac20700
           ports:
             - name: jolokia
               containerPort: 8778
