@@ -1,32 +1,48 @@
 kind: Deployment
 apiVersion: apps/v1
 metadata:
+  annotations:
+    deployment.kubernetes.io/revision: '4'
+    image.openshift.io/triggers: >-
+      [{"from":{"kind":"ImageStreamTag","name":"shipping-service:latest"},"fieldPath":"spec.template.spec.containers[?(@.name==\"shipping-service\")].image"}]
+    openshift.io/generated-by: OpenShiftNewApp
   name: shipping-service
+  labels:
+    app: shipping-service
+    app.kubernetes.io/component: shipping-service
+    app.kubernetes.io/instance: shipping-service
 spec:
   replicas: 1
+  selector:
+    matchLabels:
+      deployment: shipping-service
   template:
     metadata:
       creationTimestamp: null
+      labels:
+        deployment: shipping-service
+      annotations:
+        openshift.io/generated-by: OpenShiftNewApp
     spec:
       containers:
         - name: shipping-service
-          image: image-registry.openshift-image-registry.svc:5000/pipeline-test/shipping-service:main-b933bab458f8ee5d8d285397a2698c99b1ff488d
+          image: >-
+            image-registry.openshift-image-registry.svc:5000/pipeline-test/shipping-service@sha256:9eafccfe443aeebd8e6ec70a36c6059605a4c49c9ad23c70a657c4fd88284056
           ports:
             - name: jolokia
               containerPort: 8778
               protocol: TCP
             - containerPort: 9779
               protocol: TCP
+          env:
+            - name: AB_JOLOKIA_OPTS
+              value: >-
+                caCert=/var/run/secrets/kubernetes.io/serviceaccount/service-ca.crt,clientPrincipal.1=cn=system:master-proxy,clientPrincipal.2=cn=hawtio-online.hawtio.svc,clientPrincipal.3=cn=fuse-console.fuse.svc
           resources: {}
           terminationMessagePath: /dev/termination-log
           terminationMessagePolicy: File
           imagePullPolicy: IfNotPresent
       restartPolicy: Always
-      tolerations:
-        - key: node.network-zone-type/operations-zone
-          operator: Equal
-          value: 'true'
-          effect: NoSchedule
       terminationGracePeriodSeconds: 30
       dnsPolicy: ClusterFirst
       securityContext: {}
