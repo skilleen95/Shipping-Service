@@ -2,11 +2,6 @@ kind: Deployment
 apiVersion: apps/v1
 metadata:
   name: shipping-service
-  labels:
-    app: shipping-service
-    app.kubernetes.io/component: shipping-service
-    app.kubernetes.io/instance: pipeline-test
-    app.kubernetes.io/part-of: Microservices
 spec:
   replicas: 1
   selector:
