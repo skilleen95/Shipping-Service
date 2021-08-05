@@ -7,10 +7,6 @@ spec:
   template:
     metadata:
       creationTimestamp: null
-      labels:
-        deployment: shipping-service
-      annotations:
-        openshift.io/generated-by: OpenShiftNewApp
     spec:
       containers:
         - name: shipping-service
