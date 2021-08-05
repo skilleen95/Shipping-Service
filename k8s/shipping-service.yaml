@@ -1,11 +1,6 @@
 kind: Deployment
 apiVersion: apps/v1
 metadata:
-  annotations:
-    deployment.kubernetes.io/revision: '4'
-    image.openshift.io/triggers: >-
-      [{"from":{"kind":"ImageStreamTag","name":"shipping-service:latest"},"fieldPath":"spec.template.spec.containers[?(@.name==\"shipping-service\")].image"}]
-    openshift.io/generated-by: OpenShiftNewApp
   name: shipping-service
   labels:
     app: shipping-service
