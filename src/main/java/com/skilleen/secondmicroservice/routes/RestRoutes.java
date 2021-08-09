@@ -16,7 +16,7 @@ public class RestRoutes extends RouteBuilder {
         restConfiguration().component("servlet").bindingMode(RestBindingMode.json);
 
         rest().get("/hello-world").produces(MediaType.APPLICATION_JSON_VALUE)
-                .route().setBody(constant("Hello World From the Shipping Service! Good to see you!"));
+                .route().setBody(constant("Hello World From the Shipping Service!"));
 
 
         rest().post("ship-order")
